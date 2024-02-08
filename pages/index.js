@@ -1,26 +1,29 @@
 
-import { Navbar, Footer, Hero, Breadcrumbs } from "@components/common"
+import { Hero} from "@components/common"
 import { CourseList } from "@components/course"
-import { OrderCard } from "@components/order"
-import { EthRates, WalletBar } from "@components/web3"
+import { BaseLayout } from "@components/layout"
+import { getAllCourses } from "@content/courses/fetcher"
 
-export default function Home() {
+export default function Home({courses}) {
   return (
-    <div>
-      <div className="relative bg-white overflow-hidden">
-        <div className="relative max-w-7xl mx-auto px-4">
-          <Navbar />
-          <div className="fit">
+  
+<>
+
             <Hero />
-            <Breadcrumbs />
-            <WalletBar />
-            <EthRates />
-            <OrderCard />
-            <CourseList />
-          </div>
-        </div>
-        <Footer />
-      </div>
-    </div>
+            
+            <CourseList courses={courses} />
+
+       </>
   )
 }
+
+export function getStaticProps() {
+  const {data }= getAllCourses()
+  return {
+   props: {
+    courses: data
+   }
+  }
+}
+
+Home.Layout = BaseLayout
