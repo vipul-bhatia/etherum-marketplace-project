@@ -2,8 +2,11 @@
 
 
 import Link from 'next/link'
+import { useWeb3 } from '@components/providers'
 
 export default function Footer() {
+
+  const {connect ,isWeb3Loaded}= useWeb3()
 
   return (
     <section>
@@ -25,9 +28,22 @@ export default function Footer() {
             <Link href="/"  legacyBehavior>
               <a className="font-medium mr-8 text-gray-500 hover:text-gray-900">Wishlist</a>
               </Link>
-              
+                {
+                 isWeb3Loaded ? 
+                  <span 
+                  onClick={connect} 
+                  className="px-8 py-3 border rounded-md text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">
+                    Connect
+                    </span> 
+                    : 
+                    <span 
+                    onClick={connect} 
+                    className="px-8 py-3 border rounded-md text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">
+                      Install MetaMask
+                      </span>
+                }
                
-              <a  className="px-8 py-3 border rounded-md text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">Connect</a>
+            
              
             </div>
           </div>
