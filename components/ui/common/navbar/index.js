@@ -41,6 +41,13 @@ export default function Footer() {
                   Loading...
                    </Button> :
                    isWeb3Loaded ?
+                   account? 
+                      <Button
+                      variant='red'
+                      hoverable={false}
+                  className='cursor-default'  >
+                    Hi There :)
+                     </Button> :
                   <Button
                   onClick={connect} >
                     Connect

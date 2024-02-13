@@ -40,7 +40,7 @@ export default function Web3Provider({children} ){
             ...web3Api,
             isWeb3Loaded:web3 !=null,
             hooks: setupHooks(web3),
-            getHooks: ()=> setupHooks(web3),
+            getHooks: ()=> setupHooks(web3,provider),
             connect: provider ? 
             async () =>{
                 try{
